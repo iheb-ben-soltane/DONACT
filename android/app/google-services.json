@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "853626843074",
+    "project_id": "donact-15c7e",
+    "storage_bucket": "donact-15c7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853626843074:android:ef10f27f87bd204b21305b",
+        "android_client_info": {
+          "package_name": "com.example.donact"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853626843074-t3ro5o9c0pe83intpaghqe914lf5qq02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMfljwn8S9rJJCoyTneXEJHYe5_xypU8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853626843074-t3ro5o9c0pe83intpaghqe914lf5qq02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
