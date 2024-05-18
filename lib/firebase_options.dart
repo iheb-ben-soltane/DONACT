@@ -4,28 +4,27 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,40 +42,11 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD_qSlRQAFHL_eZtPTXcF8NeUgZoXV4yxY',
-    appId: '1:853626843074:web:ebd21f14f2c28e0621305b',
-    messagingSenderId: '853626843074',
-    projectId: 'donact-15c7e',
-    authDomain: 'donact-15c7e.firebaseapp.com',
-    storageBucket: 'donact-15c7e.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAMfljwn8S9rJJCoyTneXEJHYe5_xypU8k',
-    appId: '1:853626843074:android:ef10f27f87bd204b21305b',
-    messagingSenderId: '853626843074',
-    projectId: 'donact-15c7e',
-    storageBucket: 'donact-15c7e.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDyFRWahZ3X39MbLKPg21zBQemYLe61xWk',
-    appId: '1:853626843074:ios:4733d7c210a8f78721305b',
-    messagingSenderId: '853626843074',
-    projectId: 'donact-15c7e',
-    storageBucket: 'donact-15c7e.appspot.com',
-    iosClientId: '853626843074-pbjpftpheinf8jh0f2dd4g61iq51f5ki.apps.googleusercontent.com',
-    iosBundleId: 'com.example.donact',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDyFRWahZ3X39MbLKPg21zBQemYLe61xWk',
-    appId: '1:853626843074:ios:725e3ebc1a0a985021305b',
-    messagingSenderId: '853626843074',
-    projectId: 'donact-15c7e',
-    storageBucket: 'donact-15c7e.appspot.com',
-    iosClientId: '853626843074-1209ra9slscappueectfpd9rhgm3nthd.apps.googleusercontent.com',
-    iosBundleId: 'com.example.donact.RunnerTests',
+    apiKey: 'AIzaSyDpAmXh-hawVAYdCbzL8RjYnARCf9UFlrk',
+    appId: '1:620057367588:android:f37e6a76551427d04a74b1',
+    messagingSenderId: '620057367588',
+    projectId: 'to-do-15005',
+    storageBucket: 'to-do-15005.appspot.com',
   );
 }

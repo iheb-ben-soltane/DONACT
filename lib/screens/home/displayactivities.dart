@@ -1,54 +1,64 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:donact/screens/home/activitydetails.dart';
 import 'package:flutter/material.dart';
+import 'package:donact/screens/home/activitydetails.dart';
 
-class ActivitiesList extends StatelessWidget {
+class DisplayTasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('home'), // Set the title to "Activities"
+        title: Text('Activities'), // Set the title to "Activities"
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("activities").snapshots(),
-        builder: (context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-                child: CircularProgressIndicator(
+      body: ActivitiesList(),
+    );
+  }
+}
+
+class ActivitiesList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance.collection("activities").snapshots(),
+      builder: (context,
+          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(
               color: Color.fromARGB(255, 244, 146, 54),
-            ));
-          }
-
-          if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          }
-
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Text('No activities available.');
-          }
-
-          return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              DocumentSnapshot<Map<String, dynamic>> activityDoc =
-                  snapshot.data!.docs[index];
-              String activityName = activityDoc['name'];
-              String activityDate = activityDoc['date'];
-              String activityLocation = activityDoc['location'];
-              String activityDescription = activityDoc['description'];
-              String associationId = activityDoc['associationId'];
-              return ActivityItem(
-                activityName: activityName,
-                activityDate: activityDate,
-                activityLocation: activityLocation,
-                activityDescription: activityDescription,
-                associationId: associationId,
-              );
-            },
+            ),
           );
-        },
-      ),
+        }
+
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+
+        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return Center(
+            child: Text('No activities available.'),
+          );
+        }
+
+        return ListView.builder(
+          itemCount: snapshot.data!.docs.length,
+          itemBuilder: (context, index) {
+            DocumentSnapshot<Map<String, dynamic>> activityDoc =
+                snapshot.data!.docs[index];
+            String activityName = activityDoc['name'];
+            String activityDate = activityDoc['date'];
+            String activityLocation = activityDoc['location'];
+            String activityDescription = activityDoc['description'];
+            String associationId = activityDoc['associationId'];
+            return ActivityItem(
+              activityName: activityName,
+              activityDate: activityDate,
+              activityLocation: activityLocation,
+              activityDescription: activityDescription,
+              associationId: associationId,
+            );
+          },
+        );
+      },
     );
   }
 }
